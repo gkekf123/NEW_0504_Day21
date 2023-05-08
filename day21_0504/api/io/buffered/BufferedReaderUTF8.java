@@ -2,7 +2,10 @@ package day21_0504.api.io.buffered;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.InputStreamReader;
+import java.io.Reader;
 
 public class BufferedReaderUTF8 {
 
@@ -15,7 +18,13 @@ public class BufferedReaderUTF8 {
 
 		String path = "C:\\Users\\taeju\\eclipse-workspace\\File\\asd.txt";
 		
-		try (BufferedReader br = new BufferedReader(new FileReader(path))){
+//		FileInputStream fis = new FileInputStream(path); // 1바이트 기반
+//		Reader rd = new InputStreamReader(fis, "UTF-8"); // 1바이트 기반을 2바이트 형식으로 변경 // System.in -> 키보드로 입력 
+//		BufferedReader br = new BufferedReader(rd);	// 2바이트 기반 빠른읽기 - fis는 바이트 기반이므로 매개변수로 들어가지 못함
+		// 위 세줄을 한줄로... \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+//		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path), "UTF-8"));
+		
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path), "EUC-KR"));){
 		
 			String str;
 			while((str = br.readLine()) != null) {
